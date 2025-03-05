@@ -5,11 +5,12 @@ body, html {
     height: 100%;
     overflow: hidden;
     font-family: 'Arial', sans-serif;
+    background: #000;
     color: #fff;
 }
 
-/* Video Background */
-.video-background {
+/* Animated AI Background */
+.background {
     position: absolute;
     top: 0;
     left: 0;
@@ -17,17 +18,61 @@ body, html {
     height: 100%;
     overflow: hidden;
     z-index: -1;
+    background: linear-gradient(135deg, #000428, #004e92);
+    animation: gradientShift 10s ease infinite;
 }
 
-#bg-video {
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.particles {
     position: absolute;
-    top: 50%;
-    left: 50%;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: -1;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 10%, transparent 10.01%);
+    background-size: 20px 20px;
+    animation: moveParticles 5s linear infinite;
+}
+
+@keyframes moveParticles {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+.grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 95%, rgba(0, 255, 255, 0.1) 95%),
+                linear-gradient(90deg, transparent 95%, rgba(0, 255, 255, 0.1) 95%);
+    background-size: 20px 20px;
+    animation: moveGrid 10s linear infinite;
+}
+
+@keyframes moveGrid {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-20px, -20px); }
+}
+
+/* Glowing Effect */
+.background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 10%, transparent 10.01%);
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
 }
 
 /* Chatbot Container */
